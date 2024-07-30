@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "json.schemas": [
+
+    ],
+    "launch": {
+        
+
+        "configurations": [],
+        "compounds": []
+    }
+}
