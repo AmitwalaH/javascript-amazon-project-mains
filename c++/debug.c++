@@ -106,28 +106,78 @@
 #include <vector>
 using namespace std;
 
-int removeDuplicates(vector<int> &nums)
-{
-    vector<int> result = {nums[0]};
+// int removeDuplicates(vector<int> &nums)
+// {
+//     vector<int> result = {nums[0]};
 
-    for (int i = 1; i < nums.size(); i++)
-    {
-        if (nums[i] != result.back())
-            result.push_back(nums[i]);
+//     for (int i = 1; i < nums.size(); i++)
+//     {
+//             cout << result.back() << endl;
+//         if (nums[i] != result.back())
+//             result.push_back(nums[i]);
+//     }
+
+
+//     nums = result;
+
+//     return result.size();
+// }
+
+// int main(){
+
+//     // int k = removeDuplicates(nums);
+
+//     // cout << k << endl;
+
+//     return 0;
+// }
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> nums = {0,1,0,3,12};
+//move all zero at end of Array
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = 0; j < nums.size() - 1; j++) {
+            if (nums[i] == 0 && nums[j+1] != 0) {
+                int temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+            }
+        }
     }
 
-    nums = result;
-
-    return result.size();
-}
-
-int main(){
-
-    vector<int> nums = {0,0,1,1,1,2,2,3,3,4};
-
-    int k = removeDuplicates(nums);
-
-    cout << k << endl;
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i] << endl;
+    }
 
     return 0;
 }
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// int main() {
+//     vector<int> nums = {1, 2, -3, 4, -5, 6};
+
+//     for (int i = 0; i < nums.size(); i++) {
+//         for (int j = 0; j < i; j++) {
+//             if (nums[i] < 0 && nums[j] >= 0) {
+//                 int temp = nums[i];
+//                 nums[i] = nums[j];
+//                 nums[j] = temp;
+//             }
+//         }
+//     }
+
+//     for (int i = 0; i < nums.size(); i++) {
+//         cout << nums[i] << endl;
+//     }
+
+//     return 0;
+// }
+
