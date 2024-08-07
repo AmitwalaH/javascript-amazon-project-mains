@@ -29,7 +29,7 @@ def guess_the_number():
 
 def riddle_game():
     print("\nWelcome to the Riddle game!")
-    print("\nYou have to answer 3 questions, and at least 2 must be correct to move forward.")
+    print("You have to answer 3 questions, and at least 2 must be correct to move forward.")
     
     correct_answers = 0
     
@@ -74,6 +74,18 @@ def riddle_game():
         print("Unfortunately, you didn't answer enough questions correctly. Try again next time.")
         return False
 
+def pattern_game():
+    print("\nSolve the pattern: 3, 6, 11, 18, __")
+    print("Hint: The pattern increases by consecutive prime numbers (3, 5, 7, 11, ...)")
+    correct_answer = "29"
+    user_input = input("Enter the next number in the pattern: ").strip()
+    if user_input == correct_answer:
+        print("Congratulations! You solved the pattern!")
+        return True
+    else:
+        print("Incorrect. The correct answer is 29.")
+        return False
+
 def process_input(player_input, curr_loc):
     actions = location.island_map[curr_loc]["actions"]
     if player_input in actions:
@@ -82,12 +94,18 @@ def process_input(player_input, curr_loc):
             if guess_the_number():
                 return new_location 
             else:
-                return curr_loc  
+                return curr_loc
         elif new_location == "cave":
             if riddle_game():
                 return new_location 
             else:
-                return curr_loc 
+                return curr_loc  
+        elif new_location == "treasure chamber":
+            if pattern_game():
+                treasures = ['gem', 'ruby', 'diamond', 'coin', 'emerald', 'goblet']
+                print(f"You found the following treasures: {', '.join(treasures)}")
+            else:
+                return curr_loc
         return new_location
     elif player_input == "quit":
         return "quit"
