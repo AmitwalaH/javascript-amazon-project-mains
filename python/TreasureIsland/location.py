@@ -1,8 +1,3 @@
-
-
-
-
-
 island_map = {
     "beach": {
         "description": "You are on a sandy beach. You see a path leading into the jungle.",
@@ -21,3 +16,11 @@ island_map = {
         "actions": {"go back": "cave"}
     }
 }
+
+current_location = "beach"
+
+def show_curr(location):
+    print(island_map[location]["description"])
+    print("You can: " + ", ".join(island_map[location]["actions"].keys()))
+
+show_curr(current_location)
