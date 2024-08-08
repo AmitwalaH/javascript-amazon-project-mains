@@ -109,19 +109,15 @@ def treasure_chamber_doors():
 
     elif choice == 'B':
         print("The Mysterious Door requires you to solve a riddle.")
-        if riddle_game():
+        if pattern_game():
             print("You solved the riddle! The door opens.")
             return True
         else:
             return False
 
     elif choice == 'C':
-        print("The Simple Door presents a number sequence challenge.")
-        if pattern_game():
-            print("You solved the pattern! The door opens.")
-            return True
-        else:
-            return False
+        print("Hurry! ,You Won without solving any further Challenges..")
+        return True
 
     else:
         print("Invalid choice. Please choose A, B, or C.")
@@ -197,7 +193,9 @@ while True:
     current_location = process_input(player_input, current_location)
 
     if current_location == "treasure_chamber":
+        treasure = ["Buckets of Gold", "Diamonds", "Ancinet Money" , "Gems"]
         print("Congratulations! You've found the legendary treasure!")
+        print(treasure)
         break
 
     if current_location == "game_over":
