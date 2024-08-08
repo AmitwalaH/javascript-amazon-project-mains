@@ -10,7 +10,8 @@ def guess_the_number():
     while attempts > 0:
         guess = int(input("Enter your guess: "))
         if guess == number_to_guess:
-            print("\nCongratulations! You guessed the correct number!\n")
+            print("\nCongratulations! You guessed the correct number!")
+            print("Now, moving to the next location.\n")
             return True
         elif guess < number_to_guess:
             print("Too low!")
@@ -60,6 +61,7 @@ def riddle_game():
     print(f"\nYou answered {correct_answers} out of 3 questions correctly.")
     if correct_answers >= 2:
         print("Congratulations! You can move forward.")
+        print("Now, moving to the next location.\n")
         return True
     else:
         print("You didn't answer enough questions correctly. Try again next time.")
@@ -71,6 +73,7 @@ def pattern_game():
     answer = input("Enter the next number in the pattern: ").strip()
     if answer == "29":
         print("Congratulations! You solved the pattern!")
+        print("Now, moving to the next location.\n")
         return True
     else:
         print("Incorrect. The correct answer is 29.")
@@ -91,13 +94,14 @@ def treasure_chamber_doors():
     elif choice == 'b':
         print("\nYou chose Door B. You must solve a pattern to proceed.\n")
         if pattern_game():
-            print("\nYou solved the pattern.\n")
-            return True
+            print("\nYou solved the pattern, but you got lost and ended up back where you started.\n")
+            return False
         else:
             return False
     
     elif choice == 'c':
-        print("\nYou chose Door C. Congratulations! You found the hidden treasure without any further challenges!\n")
+        print("\nYou chose Door C. Congratulations! You found the hidden treasure without any further challenges!")
+        print("Now, moving to the next location.\n")
         return True
     
     else:
