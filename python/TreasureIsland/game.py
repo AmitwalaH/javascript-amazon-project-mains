@@ -91,8 +91,8 @@ def treasure_chamber_doors():
     elif choice == 'b':
         print("\nYou chose Door B. You must solve a pattern to proceed.\n")
         if pattern_game():
-            print("\nYou solved the pattern, but you got lost and ended up back where you started.\n")
-            return False
+            print("\nYou solved the pattern.\n")
+            return True
         else:
             return False
     
