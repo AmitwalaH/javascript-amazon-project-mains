@@ -1,6 +1,11 @@
-def histogram(numbers):
-  for num in numbers:
-      print('*' * num)
+n = int(input("Enter the number of terms for the Fibonacci series: "))
 
-numbers = [4, 9, 7]
-histogram(numbers)
+a = 0
+b = 1
+
+c = 0
+
+while c < n:
+    print(a)
+    a = b
+    b = a + b

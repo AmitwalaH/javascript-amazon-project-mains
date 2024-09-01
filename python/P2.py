@@ -101,3 +101,13 @@ print("53003230039")
 
 # numbers = [4, 9, 7]
 # histogram(numbers)
+
+def is_armstrong_number(n):
+  
+
+
+user_input = int(input("Enter a number to check if it is an Armstrong number: "))
+if is_armstrong_number(user_input):
+  print(f"{user_input} is an Armstrong number.")
+else:
+  print(f"{user_input} is not an Armstrong number.")

@@ -49,7 +49,6 @@ Node *insertAtTail(int value, Node *&head, Node *&tail)
     return tail;
 }
 
-
 int len(Node *head)
 {
     Node *temp = head;
@@ -98,6 +97,21 @@ void print(Node *head)
     cout << "NULL" << endl;
 }
 
+int search(int target, Node *head)
+{
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        if (temp->data == target)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 
 int main()
 {
@@ -125,6 +139,10 @@ int main()
     print(head);
     len(head);
     cout << endl;
+
+    int target = 107;
+    int re = search(target, head);
+    cout << re << endl;
 
     return 0;
 }
