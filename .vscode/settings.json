@@ -10,5 +10,6 @@
 
         "configurations": [],
         "compounds": []
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
