@@ -138,7 +138,7 @@ int main()
     
     cout << endl;
 
-    sortHeap(arr,n);
+    // sortHeap(arr,n);
 
 //     Heap dq(10);
 

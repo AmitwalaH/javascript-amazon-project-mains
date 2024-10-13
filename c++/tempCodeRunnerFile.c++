@@ -1,4 +1,1 @@
-    if (root == NULL)
-    {
-        return;
-    }
+leftIndex

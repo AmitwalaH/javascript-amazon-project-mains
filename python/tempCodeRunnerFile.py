@@ -1,11 +1,11 @@
-n = int(input("Enter the number of terms for the Fibonacci series: "))
+import tkinter as tk
 
-a = 0
-b = 1
+root = tk.Tk()
+root.title("Configured Widget Example")
 
-c = 0
 
-while c < n:
-    print(a)
-    a = b
-    b = a + b
+label = tk.Label(root, text="Hello, Amit Wala - 39!", bg="red", font=("Times", 18))
+
+label.pack(padx=20, pady=20)
+
+root.mainloop()

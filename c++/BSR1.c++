@@ -72,6 +72,15 @@ void inOrder(Node *root)
     inOrder(root->right);
 }
 
+void preOrder(Node *root){
+    //N
+    ans.push_back(root->data);
+    //L
+    preOrder(root->left);
+    //R
+    preOrder(root->right);
+}
+
 void minimumValue()
 {
     int minBST = ans.front();
@@ -245,7 +254,13 @@ int main()
     Node *root;
     root = createTree();
 
-    levelOrderTraversal(root);
+    // levelOrderTraversal(root);
+    preOrder(root);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
 
     // bool ans = searchInBST(root, 150);
     // if (ans)
