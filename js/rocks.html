@@ -1,0 +1,236 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+  <body>
+    <button class="js-change" onclick="change()">Changed</button>
+
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders Under $40 = + $10 Shipping</p>
+    <p>Orders Above $40 = + Free Shipping</p>
+    <form>
+      <input type="number" class="js-number" />
+      <input
+        type="button"
+        class="js-cal"
+        value="Calculate"
+        onclick="calCulate()"
+      />
+    </form>
+    <p class="js-result"></p>
+    <script>
+      /*
+      const product = {
+        name: 'socks',
+        price: 1090
+      };
+      console.log(product);
+      console.log(product.name);
+      console.log(product.price);
+
+      product.name = 'cotton socks';
+      console.log(product);
+
+      product.newProperty = true;
+      console.log(product);
+
+      delete product.newProperty;
+      console.log(product);
+      */
+
+      /*
+      const product2 = {
+        name: 'shirt',
+        'delivery-time': '1 day',
+        rating: {
+          stars: 4.5,
+          count: 87
+        },
+        fun: function function1() {
+          console.log('function inside object');
+        }
+      };
+      console.log(product2);
+      console.log(product2.name);
+      console.log(product2['name']);
+      console.log(product2['delivery-time']);
+      
+      console.log(product2.rating.count);
+      product2.fun();
+
+      console.log(typeof console.log);
+
+      console.log(JSON.stringify(product2));
+
+      const jsonString = JSON.stringify(product2);
+      console.log(JSON.parse(jsonString));
+      */
+
+      /*    console.log("hello".length);
+      console.log("hello".toUpperCase());
+
+      const object1 = {
+        message: "hello",
+        price: 799,
+      };
+      const object2 = object1;
+
+      object1.message = "Good job!";
+      console.log(object1);
+      console.log(object2);
+
+      const object3 = {
+        message: "Good job!",
+        price: 799,
+      };
+      console.log(object1 === object3);
+
+      // const message = object1.message;
+      const { message, price: cost } = object1;
+      console.log(message);
+      console.log(cost);
+
+      const object4 = {
+        // message: message,
+        message,
+        // method: function function1() {
+
+        // },
+        // method: function() {
+
+        // },
+        method() {},
+      };
+      */
+
+      // console.log(document.title);
+      document.title = " Learning the current Trends";
+      // document.body.innerHTML = "Changed";
+      let ch = document.querySelector(".js-change");
+
+      function change() {
+        if (ch.innerHTML === "Changed") {
+          ch.innerHTML = "Unchanged";
+          console.log("Button Changed!!");
+        } else if (ch.innerHTML === "Unchanged") {
+          ch.innerHTML = "Changed";
+          console.log("Button Changed!!");
+        }
+      }
+
+      function calCulate() {
+        let no = document.querySelector(".js-number");
+        let cal = document.querySelector(".js-cal");
+        let p = document.querySelector(".js-result");
+        let inputElement = Number(no.value);
+        if (inputElement < 40) {
+          inputElement = inputElement + 10;
+        } else if (inputElement > 40) {
+          inputElement = inputElement;
+        } else {
+          inputElement = "Error!!!!";
+        }
+
+        p.innerHTML = `${inputElement}`;
+
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Array and Loops</title>
+  </head>
+  <body>
+    <h1>To-Do List Project</h1>
+    <h3>To - Do List Project 1</h3>
+    <input type="text" class="js-list-name" />
+    <!-- <input type="date" class="js-list-date" /> -->
+    <button value="button" onclick="addTheName()">Add</button>
+    <div class="js-add-name"></div>
+    <script>
+      //TYPE - 1
+      // const toListNames = [];
+      // function addTheName() {
+      //   let listName = document.querySelector(".js-list-name");
+      //   const names = listName.value;
+      //   toListNames.push(names);
+      //   console.log(toListNames);
+      //   listName.value = '';
+
+      // }
+
+      //TYPE 03
+      // const toListNames = [];
+      // const toListDates = [];
+      // function addTheName() {
+      //   let listName = document.querySelector(".js-list-name");
+      //   let dispName = document.querySelector(".js-add-name");
+      //   let addDate = document.querySelector(".js-list-date");
+      //   const names = listName.value;
+      //   const dates = addDate.value;
+      //   let allListNames = "";
+      //   toListNames.push(names);
+      //   for (let i = 0; i < toListNames.length; i++) {
+      //     const element = toListNames[i];
+      //     let listTo = `<p>${element}</p>`;
+      //     allListNames += listTo;
+      //   }
+      //   let allListDates = "";
+      //   for (let i = 0; i < toListDates.length; i++) {
+      //     const element = toListDates[i];
+      //     let listToDate = `<p>${element}</p>`;
+      //     allListDates += listToDate;
+      //   }
+      //   dispName.innerHTML = allListNames;
+      //   dispName.innerHTML = allListDates;
+      //   // console.log(dates);
+      //   listName.value = "";
+      //   addDate.value = "";
+      // }
+
+
+      function name() {
+        console.log("Hello1");
+      }
+
+      name();
+
+      const heloo = function(){
+        console.log("Function are Values!");
+      }
+
+      heloo();
+      console.log(typeof heloo);
+      
+      const obj1 = {
+        name: "Amit",
+        age: function(){
+          console.log("My age is 18");
+        }
+      };
+
+      obj1.age();
+
+
+      //callback -> Passing a function into another function
+      function head(params) {
+        params();
+      }
+
+      head(function(){
+        console.log("Deadpool");
+      })
+
+      //setTimeout() -> allows us to run code in future
+
+      setTimeout(function(){
+        console.log("Calling the Function after 3 seconds");
+      }, 3000);
+
+    </script>
+  </body>
+</html>
