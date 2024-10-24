@@ -11,8 +11,10 @@ import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import {
   deliveryOptions,
   getDeliveryOption,
+  calculateDeliveryDate,
 } from "../../data/deliveryOption.js";
-import {renderPaymentSummary} from "./paymentSummary.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
@@ -28,11 +30,7 @@ export function renderOrderSummary() {
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-    const today = dayjs();
-
-    const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
-
-    const dateString = deliveryDate.format("dddd, MMMM D");
+    const dateString = calculateDeliveryDate(deliveryOption);
 
     cartSummaryHTML += `<div class="cart-item-container js-cart-item-container-${
       matchingProduct.id
@@ -54,19 +52,21 @@ export function renderOrderSummary() {
                   </div>
                   <div class="product-quantity">
                     <span>
-                      Quantity: <span class="quantity-label js-quantity-label-${
-                        matchingProduct.id
-                      }">${cartItem.quantity}</span>
+                       Quantity: <span class="quantity-label js-quantity-label-${
+                         matchingProduct.id
+                       }">${cartItem.quantity}</span>
                     </span>
-                    <span class="update-quantity-link link-primary js-update-link" 
-                      data-product-id="${matchingProduct.id}">
+                    <span class="update-quantity-link link-primary js-update-link"
+                data-product-id="${matchingProduct.id}">
                       Update
                     </span>
                     <input class="quantity-input js-quantity-input-${
                       matchingProduct.id
                     }">
-                    <span class="save-quantity-link link-primary js-save-link"
-                          data-product-id="${matchingProduct.id}">Save</span>
+              <span class="save-quantity-link link-primary js-save-link"
+                data-product-id="${matchingProduct.id}">
+                Save
+              </span>
                     <span class="delete-quantity-link link-primary
                           js-delete-link" data-product-id="${
                             matchingProduct.id
@@ -90,11 +90,7 @@ export function renderOrderSummary() {
     let html = "";
 
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-
-      const deliveryDate = today.add(deliveryOption.deliveryDays, "Days");
-
-      const dateSting = deliveryDate.format("dddd, MMMM D");
+      const dateString = calculateDeliveryDate(deliveryOption);
 
       const priceString =
         deliveryOption.priceCents === 0
@@ -111,7 +107,7 @@ export function renderOrderSummary() {
                       name="delivery-option-${matchingProduct.id}">
                     <div>
                       <div class="delivery-option-date">
-                        ${dateSting}
+                        ${dateString}
                       </div>
                       <div class="delivery-option-price">
                         ${priceString} Shipping
@@ -130,70 +126,13 @@ export function renderOrderSummary() {
     link.addEventListener("click", () => {
       const { productId } = link.dataset;
       remoevFromCart(productId);
-      const container = document.querySelector(`
-        .js-cart-item-container-${productId}
-        `);
-      container.remove();
+      renderCheckoutHeader();
+      renderOrderSummary();
       renderPaymentSummary();
     });
   });
 
-  function updateCartQuantity() {
-    const cartQuantity = calculateCartQuantity();
-
-    document.querySelector(
-      ".js-return-to-home-link"
-    ).innerHTML = `${cartQuantity} items`;
-  }
-
-  updateCartQuantity();
-
-  document.querySelectorAll(".js-update-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      const { productId } = link.dataset;
-      const container = document.querySelector(
-        `.js-cart-item-container-${productId}
-        `
-      );
-
-      container.classList.add("is-editing-quantity");
-    });
-  });
-
-  document.querySelectorAll(".js-save-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      // Here's an example of a feature we can add: validation.
-      // Note: we need to move the quantity-related code up
-      // because if the new quantity is not valid, we should
-      // return early and NOT run the rest of the code. This
-      // technique is called an "early return".
-
-      const { productId } = link.dataset;
-
-      const quantityInput = document.querySelector(
-        `.js-quantity-input-${productId}`
-      );
-      const newQuantity = Number(quantityInput.value);
-
-      if (newQuantity < 0 || newQuantity >= 1000) {
-        alert("Quantity must be at least 0 and less than 1000");
-        return;
-      }
-      updateQuantity(productId, newQuantity);
-
-      const container = document.querySelector(
-        `.js-cart-item-container-${productId}`
-      );
-      container.classList.remove("is-editing-quantity");
-
-      const quantityLabel = document.querySelector(
-        `.js-quantity-label-${productId}`
-      );
-      quantityLabel.innerHTML = newQuantity;
-      updateCartQuantity();
-    });
-  });
-
+  
   document.querySelectorAll(".js-delivery-option").forEach((element) => {
     element.addEventListener("click", () => {
       const { productId, deliveryOptionId } = element.dataset;
@@ -202,4 +141,41 @@ export function renderOrderSummary() {
       renderPaymentSummary();
     });
   });
+  
+  document.querySelectorAll(".js-update-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    const productId = link.dataset.productId;
+    const container = document.querySelector(`.js-cart-item-container-${productId}`);
+    container.classList.add("is-editing-quantity");
+    
+    // Show the quantity input field
+    const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
+    quantityInput.style.display = 'inline'; // Show the input field
+
+  });
+});
+
+
+document.querySelectorAll('.js-save-link')
+.forEach((link) => {
+  link.addEventListener('click', () => {
+    const productId = link.dataset.productId;
+    
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    );
+    container.classList.remove('is-editing-quantity');
+    
+    const quantityInput = document.querySelector(
+      `.js-quantity-input-${productId}`
+    );
+    const newQuantity = Number(quantityInput.value);
+    updateQuantity(productId, newQuantity);
+    
+    renderCheckoutHeader();
+    renderOrderSummary();
+    renderPaymentSummary();
+    });
+  });
+  
 }
