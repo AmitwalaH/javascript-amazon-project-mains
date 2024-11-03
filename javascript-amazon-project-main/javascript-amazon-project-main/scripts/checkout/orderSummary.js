@@ -1,7 +1,6 @@
 import {
   cart,
-  remoevFromCart,
-  calculateCartQuantity,
+  removeFromCart,
   updateQuantity,
   updateDeliveryOption,
 } from "../../data/cart.js";
@@ -127,7 +126,7 @@ export function renderOrderSummary() {
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
       const { productId } = link.dataset;
-      remoevFromCart(productId);
+      removeFromCart(productId);
       renderCheckoutHeader();
       renderOrderSummary();
       renderPaymentSummary();
