@@ -6,18 +6,33 @@ import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 
-Promise.all([
-  loadProductsFetch(),
-  new Promise((resolve) => {
+async function laodPage() {
+  await loadProductsFetch();
+  await new Promise((resolve) => {
     loadCart(() => {
       resolve();
     });
-  }),
-]).then(() => {
+  });
+
   renderCheckoutHeader();
   renderOrderSummary();
   renderPaymentSummary();
-});
+}
+
+laodPage();
+
+// Promise.all([
+//   loadProductsFetch(),
+//   new Promise((resolve) => {
+//     loadCart(() => {
+//       resolve();
+//     });
+//   }),
+// ]).then(() => {
+//   renderCheckoutHeader();
+//   renderOrderSummary();
+//   renderPaymentSummary();
+// });
 
 /*
 //Created the new Promise
