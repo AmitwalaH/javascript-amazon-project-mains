@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "give-me-a-joke": "^0.5.1"
+    "colors": "^1.4.0",
+    "give-me-a-joke": "^0.5.1",
+    "punycode": "^2.3.1"
   }
 }
