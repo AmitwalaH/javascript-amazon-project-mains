@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+
 router.get("/", (req,res) => {
-  res.send('GET Response!!')
+    res.send('GET Response!!')
 });
 router.post("/items", (req,res) => {
     res.json({x:1,y:2,z:3})
@@ -13,5 +14,10 @@ router.put("/items/:id", (req,res) => {
 router.delete("/items/:id", (req,res) => {
     res.send('DELETE Response!!')
 });
+
+router.get('/ri/:name', (req,res) => {
+    const {name} = req.params;
+    res.send(`<h1>Person to be meeting ${name}</h1>`)
+})
 
 module.exports = router;
