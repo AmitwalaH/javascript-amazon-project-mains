@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const port = 8100;
 
+app.set('views engine','ejs')
+
 app.get("/", (req, res) => {
-  res.send("Got The Blessing from GOD!!");
+  res.render("home.ejs");
 });
 
 app.listen(port, () => {
