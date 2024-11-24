@@ -9,17 +9,21 @@ const loggingMiddleware = function (req, res, next) {
   console.log("Logging to site");
   next();
 };
-app.use(loggingMiddleware);
+// app.use(loggingMiddleware);
 const authMiddleware = function (req, res, next) {
   console.log("Auth to site");
   next();
 };
-app.use(authMiddleware);
+// app.use(authMiddleware);
 const validateMiddleware = function (req, res, next) {
   console.log("Validate to site");
   next();
 };
-app.use(validateMiddleware);
+// app.use(validateMiddleware);
+
+const route = require('./routes')
+//mounting the routes
+app.use('/api',route)
 
 app.get("/", (req, res) => {
   console.log(req.body);
