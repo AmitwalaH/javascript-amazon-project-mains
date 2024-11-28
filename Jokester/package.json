@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon Middleware/mid.js",
+    "dev": "nodemon CRUD/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +13,8 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "nodemon": "^3.1.7"
+    "method-override": "^3.0.0",
+    "nodemon": "^3.1.7",
+    "uuid": "^11.0.3"
   }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Comment</title>
+  </head>
+  <body>
+    <h1>Edit Comment</h1>
+
+    <!-- Form to edit the comment -->
+    <form method="POST" action="/comments/<%= comment.id %>?_method=PATCH" method="POST">
+      <br /><br />
+
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" rows="4" required>
+<%= comment.comment %></textarea
+      >
+      <br /><br />
+
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <!-- Link to go back to the specific comment view -->
+    <a href="/comments/<%= comment.id %>">Back to Comment</a>
+  </body>
+</html>
